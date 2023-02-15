@@ -5,6 +5,7 @@ import board.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -20,8 +21,6 @@ public class BoardController {
         ModelAndView mv = new ModelAndView("board/boardList");
 
         List<BoardDto> list = boardService.selectBoardList();
-        System.out.println("111111111111111111111111111111111111111111111111111111111111111");
-        System.out.println(list);
         mv.addObject("list", list);
 
         return mv;
@@ -36,5 +35,15 @@ public class BoardController {
     public String insertBoard(BoardDto board) throws Exception {
         boardService.insertBoard(board);
         return "redirect:/board/openBoardList.do";
+    }
+
+    @RequestMapping("/board/openBoardDetail.do")
+    public ModelAndView openBoardDetail(@RequestParam int boardIdx) throws Exception {
+        ModelAndView mv = new ModelAndView("/board/boardDetail");
+
+        BoardDto board = boardService.selectBoardDetail(boardIdx);
+        mv.addObject("board", board);
+
+        return mv;
     }
 }
