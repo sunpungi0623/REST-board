@@ -1,6 +1,7 @@
 package board.board.service;
 
 import board.board.dto.BoardDto;
+import board.board.dto.Criteria;
 import board.board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private BoardMapper boardMapper;
     @Override
-    public List<BoardDto> selectBoardList() throws Exception {
-        return boardMapper.selectBoardList();
+    public List<BoardDto> getList(Criteria cri) throws Exception {
+        return boardMapper.getList(cri);
     }
     @Override
     public void insertBoard(BoardDto board) throws Exception {
@@ -35,5 +36,9 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void deleteBoard(int boardIdx) throws Exception {
         boardMapper.deleteBoard(boardIdx);
+    }
+    @Override
+    public int getTotal() throws Exception {
+        return boardMapper.getTotal();
     }
 }
