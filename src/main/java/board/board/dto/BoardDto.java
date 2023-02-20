@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-
 @Data
 public class BoardDto {
     private int boardIdx;

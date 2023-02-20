@@ -1,8 +1,6 @@
 package board.board.controller;
 
 import board.board.dto.BoardDto;
-import board.board.dto.Criteria;
-import board.board.dto.PageDto;
 import board.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,14 +17,11 @@ public class BoardController {
     private BoardService boardService;
 
     @RequestMapping("/board/openBoardList.do")
-    public ModelAndView openBoardList(Criteria criteria) throws Exception {
-        ModelAndView mv = new ModelAndView("board/boardList");
+    public ModelAndView openBoardList() throws Exception {
+        ModelAndView mv = new ModelAndView("/board/boardList");
 
-        List<BoardDto> list = boardService.getList(criteria);
-
-
+        List<BoardDto> list = boardService.selectBoardList();
         mv.addObject("list", list);
-        mv.addObject("pageMaker", new PageDto(boardService.getTotal(), 10, criteria));
 
         return mv;
     }
