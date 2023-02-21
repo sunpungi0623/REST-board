@@ -3,6 +3,7 @@ package board.board.dto;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class BoardDto {
@@ -15,4 +16,5 @@ public class BoardDto {
     private String updaterId;
     private Date updatedDatetime;
     private String deletedYn;
+    private List<BoardFileDto> fileList;
 }
